@@ -40,7 +40,7 @@ $msg = $_GET['msg'] ?? null;
                             </div>
                         </div>
                         <div class="card-body">
-                            <p class="card-description text-center">Or Be Classical</p>
+                            <p class="card-description text-center"></p>
                             
                             <span class="bmd-form-group">
                                 <div class="input-group">
@@ -97,24 +97,19 @@ $msg = $_GET['msg'] ?? null;
                         </div>
                     </div>
                 </form>
-                <form>
-                    <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_GffqOJ4TsFX8hN" async></script>
-                </form>
             </div>
         </div>
         
         <footer class="footer">
             <div class="container">
                 <nav class="float-left footer-menu">
-                    <ul>
-                        <li><a href="https://github.com/omkar2403/inout/">In Out System</a></li>
-                        <li><a href="https://www.koha-community.org/">Powered By KOHA Community</a></li>
-                    </ul>
-                </nav>
-                <div class="copyright float-right">
-                    © <script>document.write(new Date().getFullYear())</script>, made with <i class="material-icons">favorite</i> by
-                    <a href="https://omkar2403.github.io/its_me/" target="_blank">Omkar Kakeru</a> for a better web.
-                </div>
+      <ul>
+        <li><a href="https://github.com/jessedhammu/footfall/" target="_blank">Library Footfall</a></li>
+      </ul>
+    </nav>
+    <div class="copyright float-right">
+      <a href="https://creativecommons.org">Footfall</a> © 2025 by <a href="https://rupindersingh.in/">Rupinder Singh</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">.
+    </div>
             </div>
         </footer>
     </div>
