@@ -27,7 +27,7 @@
         $result = mysqli_query($koha, $sql);
         $data4 = mysqli_fetch_row($result);
         if ($data1) {
-            $sql = "SELECT *  FROM `inout` WHERE `cardnumber` = '$usn' AND `date` = '$date' AND `status` = 'IN'";
+            $sql = "SELECT *  FROM `footfall` WHERE `cardnumber` = '$usn' AND `date` = '$date' AND `status` = 'IN'";
             $result = mysqli_query($conn, $sql) or die("Invalid query: 3" . mysqli_error());
             $exit = mysqli_fetch_row($result);
             if ($exit) {
@@ -35,14 +35,14 @@
                 $chk2 = mysqli_query($conn, $chk) or die("Invalid query: 4" . mysqli_error());
                 $chk3 = mysqli_fetch_row($chk2);
                 if (!$chk3) {
-                    $sql = "SELECT *  FROM `inout` WHERE `cardnumber` = '$usn' AND `date` = '$date' AND `status` = 'IN'";
+                    $sql = "SELECT *  FROM `footfall` WHERE `cardnumber` = '$usn' AND `date` = '$date' AND `status` = 'IN'";
                     $result = mysqli_query($conn, $sql) or die("Invalid query: 5" . mysqli_error());
                     $chk4 = mysqli_fetch_array($result);
                     if($chk4['loc'] != $_SESSION['locname']){
-                        $sql = "UPDATE `inout` SET `exit` = '$time', `status` = 'OUT' WHERE `sl` = $exit[0];";
+                        $sql = "UPDATE `footfall` SET `exit` = '$time', `status` = 'OUT' WHERE `sl` = $exit[0];";
                         $result = mysqli_query($conn, $sql) or die("Invalid query: 6" . mysqli_error());
-                        $sl = getsl($conn, "sl", "inout");
-                        $sql = "INSERT INTO `inout` (`sl`, `cardnumber`, `name`, `gender`, `date`, `entry`, `exit`, `status`,`loc`,`cc`,`branch`,`sort1`,`sort2`,`email`,`mob`) VALUES ('$sl', '$usn', '$data1[0]', '$data1[2]', '$date', '$time', '".$_SESSION['libtime']."', 'IN','$loc','$data3[0]','$data4[0]','$data1[5]','$data1[6]','$data1[8]','$data1[7]');";
+                        $sl = getsl($conn, "sl", "footfall");
+                        $sql = "INSERT INTO `footfall` (`sl`, `cardnumber`, `name`, `gender`, `date`, `entry`, `exit`, `status`,`loc`,`cc`,`branch`,`sort1`,`sort2`,`email`,`mob`) VALUES ('$sl', '$usn', '$data1[0]', '$data1[2]', '$date', '$time', '".$_SESSION['libtime']."', 'IN','$loc','$data3[0]','$data4[0]','$data1[5]','$data1[6]','$data1[8]','$data1[7]');";
                         $result = mysqli_query($conn, $sql) or die("Invalid query: 7" . mysqli_error());
                         $e_name = $data1[0];
                         $d_status = "IN";
@@ -52,9 +52,9 @@
                         $sql = "INSERT INTO `tmp2` (`usn`, `time`) VALUES ('$usn', CURRENT_TIMESTAMP);";
                         $result = mysqli_query($conn, $sql) or die("Invalid query: 8" . mysqli_error());
                     }else{
-                        $sql = "UPDATE `inout` SET `exit` = '$time', `status` = 'OUT' WHERE `sl` = $exit[0];";
+                        $sql = "UPDATE `footfall` SET `exit` = '$time', `status` = 'OUT' WHERE `sl` = $exit[0];";
                         $result = mysqli_query($conn, $sql) or die("Invalid query: 9" . mysqli_error());
-                        $sql = "SELECT SUBTIME(`exit`,`entry`)  FROM `inout` WHERE `cardnumber`='$usn' AND `sl` = $exit[0];";
+                        $sql = "SELECT SUBTIME(`exit`,`entry`)  FROM `footfall` WHERE `cardnumber`='$usn' AND `sl` = $exit[0];";
                         $result = mysqli_query($conn, $sql) or die("Invalid query: 10" . mysqli_error());
                         $otime = mysqli_fetch_row($result);
                         $e_name = $data1[0];
@@ -85,8 +85,8 @@
                 $date = NULL;
                 $time1 = "-";
               } elseif ($data1) {
-                    $sl = getsl($conn, "sl", "inout");
-                    $sql = "INSERT INTO `inout` (`sl`, `cardnumber`, `name`, `gender`, `date`, `entry`, `exit`, `status`,`loc`,`cc`,`branch`,`sort1`,`sort2`,`email`,`mob`) VALUES ('$sl', '$usn', '$data1[0]', '$data1[2]', '$date', '$time', '".$_SESSION['libtime']."', 'IN','$loc','$data3[0]','$data4[0]','$data1[5]','$data1[6]','$data1[8]','$data1[7]');";
+                    $sl = getsl($conn, "sl", "footfall");
+                    $sql = "INSERT INTO `footfall` (`sl`, `cardnumber`, `name`, `gender`, `date`, `entry`, `exit`, `status`,`loc`,`cc`,`branch`,`sort1`,`sort2`,`email`,`mob`) VALUES ('$sl', '$usn', '$data1[0]', '$data1[2]', '$date', '$time', '".$_SESSION['libtime']."', 'IN','$loc','$data3[0]','$data4[0]','$data1[5]','$data1[6]','$data1[8]','$data1[7]');";
                     $result = mysqli_query($conn, $sql) or die("Invalid query: 11" . mysqli_error($conn));
                     $e_name = $data1[0];
                     $d_status = "IN";

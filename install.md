@@ -1,6 +1,6 @@
-# In Out System Installation Guide
+# Footfall Management System Installation Guide
 
-Welcome to the In Out System Installation Guide! In this tutorial, we'll walk you through the process of setting up the In Out System on your server. Let's get started!
+Welcome to the Footfall Management System Installation Guide! In this tutorial, we'll walk you through the process of setting up the Footfall Management System on your server. Let's get started!
 
 ## 1. Setting Up PHP Environment
 
@@ -79,25 +79,25 @@ Navigate to the directory where you want to set up the application.
 #### Step 3: Clone the Repository
 
 ```bash
-sudo git clone --recursive https://github.com/omkar2403/inout.git
+sudo git clone --recursive hhttps://github.com/jessedhammu/footfall.git
 ```
 
-Clone the In Out System repository.
+Clone the Footfall Management System repository.
 
 ### II. Download Repository from GitHub
 
 To begin, we'll download the software package from the provided link and then move it to the Home directory. The package consists of two main files:
 
-1. **inout** (a directory)
+1. **footfall** (a directory)
 2. **Lib.sql** (an SQL database file)
 
-[Download Link](https://github.com/omkar2403/inout.git)
+
 
 First, unzip the downloaded file and then move it to the Home directory:
 
 ```bash
 # Unzip the downloaded file
-unzip inout.zip
+unzip footfall.zip
 ```
 
 ```bash
@@ -117,14 +117,14 @@ These commands will ensure that the downloaded package is unzipped and then move
 #### Step 4: Set Permissions
 
 ```bash
-sudo find /usr/share/koha/opac/htdocs/inout -type d -exec chmod 755 {} \;
+sudo find /usr/share/koha/opac/htdocs/footfall -type d -exec chmod 755 {} \;
 
-sudo find /usr/share/koha/opac/htdocs/inout -type f -exec chmod 644 {} \;
+sudo find /usr/share/koha/opac/htdocs/footfall -type f -exec chmod 644 {} \;
 
 sudo chown www-data:www-data -R inout
 ```
 
-Ensure proper permissions for the `inout` directory.
+Ensure proper permissions for the `footfall` directory.
 
 ## 4. Setting Up the Database
 
@@ -174,14 +174,36 @@ Replace the connection details with your MySQL username, password, and database 
 
 ```php
 <?php
-$servername = "localhost";
-$username = "admin"; // database username
-$password = "Admin@7676";  // database password
-$db = "lib";  // inout database name
-$koha = "koha_library";  // koha database name
-$conn = mysqli_connect($servername, $username, $password, $db);
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error($conn));
+// Enable strict error reporting for MySQLi
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+// Local database (footfall)
+$local_server = "localhost";
+$remote_server = "172.1.3.9"; // IP of the Koha server
+$username = "footfall";
+$password = "your password";
+$db = "footfall";
+$koha_db = "your koha databasey";
+
+// Set timezone
+date_default_timezone_set("Asia/Kolkata");
+
+try {
+    // Connect to local footfall DB
+    $conn = new mysqli($local_server, $username, $password, $db);
+    $conn->set_charset("utf8mb4");
+
+    // Connect to remote Koha DB
+    $koha = new mysqli($remote_server, $username, $password, $koha_db);
+    $koha->set_charset("utf8mb4");
+
+} catch (mysqli_sql_exception $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
+
+// Sanitization helper
+function sanitize(mysqli $conn, string|null $str): string {
+    return $str !== null ? $conn->real_escape_string($str) : '';
 }
 
 ```
@@ -200,7 +222,7 @@ Restart Apache to apply changes.
 
 Congratulations! The system is now ready to use. You can access it through the following address:
 
-[http://localhost/inout/login.php](http://localhost/inout/login.php)
+[http://localhost/footfall/login.php](http://localhost/footfall/login.php)
 
 ## How to Use
 
@@ -223,7 +245,7 @@ Now that the system is set up, here's how you can log in:
 
 ---
 
-That's it! You've successfully set up the In Out System on your server. If you have any questions or encounter any issues during the installation, feel free to reach out for assistance. Happy managing. 
+That's it! You've successfully set up the Footfall Management System on your server. If you have any questions or encounter any issues during the installation, feel free to reach out for assistance. Happy managing. 
 
 Note: Delete this file after installation!
 

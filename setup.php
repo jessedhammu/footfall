@@ -20,7 +20,7 @@
 	            <i class="material-icons">perm_identity</i>
 	          </div>
 	          <h4 class="card-title">Basic Setup -
-	            <small class="category">In Out System</small>
+	            <small class="category">Footfall System</small>
 	          </h4>
 	        </div>
 	        <div class="card-body">
@@ -31,7 +31,7 @@
 	            <div class="row">
 	            	<div class="col-md-12">
 	                <div class="form-group">
-	                  <label class="bmd-label-floating">College Name</label>
+	                  <label class="bmd-label-floating">Institute Name</label>
 	                  <input type="text" class="form-control" autofocus="true" value="<?php echo $res[0]; ?>" name="cname">
 	                </div>
 	              </div>
@@ -47,7 +47,7 @@
 	            <div class="row">
 	              <div class="col-md-12">
 	                <div class="form-group">
-	                  <label class="bmd-label-floating">What do you call your Univercity Number</label>
+	                  <label class="bmd-label-floating">University Abbreviation</label>
 	                  <input type="text" name="noname" class="form-control" value="<?php echo $res[2]; ?>">
 	                </div>
 	              </div>
@@ -65,7 +65,7 @@
 			            <i class="material-icons">done_outline</i>
 			          </div>
 			          <h4 class="card-title">Add Location -
-			            <small class="category">In Out System</small>
+			            <small class="category">Footfall System</small>
 			          </h4>
 			        </div>
 			        <div class="card-body">
@@ -156,13 +156,13 @@
 	            <i class="material-icons">view_headline</i>
 	          </div>
 	          <h4 class="card-title">Information -
-	            <small class="category">In Out System</small>
+	            <small class="category">Footfall System</small>
 	          </h4>
 	        </div>
 	        <div class="card-body">
             <div class="row">
             	<div class="col-md-12">
-            		<h3>College Name</h3>
+            		<h3>University Name</h3>
             	</div>
             </div>
             <div class="row">
@@ -182,7 +182,7 @@
             </div>
             <div class="row">
             	<div class="col-md-12">
-            		<h3>What do you call your Univercity Number?</h3>
+            		<h3>University Abbreviation</h3>
             	</div>
             </div>
             <div class="row">
@@ -200,7 +200,7 @@
 			            <i class="material-icons">map</i>
 			          </div>
 			          <h4 class="card-title">Locations -
-			            <small class="category">In Out System</small>
+			            <small class="category">Footfall System</small>
 			          </h4>
 			        </div>
 			        <div class="card-body">

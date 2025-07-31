@@ -36,31 +36,31 @@
 	  }
 
 	  if($slib == "Master"){
-      $sql = "SELECT count(sl)  FROM `inout` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and gender='M'";
+      $sql = "SELECT count(sl)  FROM `footfall` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and gender='M'";
     }else{
-      $sql = "SELECT count(sl)  FROM `inout` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and gender='M' and `loc`='$slib'";
+      $sql = "SELECT count(sl)  FROM `footfall` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and gender='M' and `loc`='$slib'";
     }
     $result = mysqli_query($conn, $sql) or die("Invalid query: " . mysqli_error($conn));
     $male = mysqli_fetch_row($result);
     if($slib == "Master"){
-      $sql = "SELECT count(sl)  FROM `inout` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and gender='F'";
+      $sql = "SELECT count(sl)  FROM `footfall` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and gender='F'";
     }else{
-      $sql = "SELECT count(sl)  FROM `inout` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and gender='F' and `loc`='$slib'";
+      $sql = "SELECT count(sl)  FROM `footfall` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and gender='F' and `loc`='$slib'";
     }
     $result = mysqli_query($conn, $sql) or die("Invalid query: " . mysqli_error($conn));
     $female = mysqli_fetch_row($result);
     if($slib == "Master"){
-      $sql = "SELECT count(sl)  FROM `inout` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate')";
+      $sql = "SELECT count(sl)  FROM `footfall` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate')";
     }else{
-      $sql = "SELECT count(sl)  FROM `inout` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and `loc`='$slib'";
+      $sql = "SELECT count(sl)  FROM `footfall` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and `loc`='$slib'";
     }
     $result = mysqli_query($conn, $sql) or die("Invalid query: " . mysqli_error($conn));
     $visit = mysqli_fetch_row($result);
 
 	  if($slib == "Master"){
-	    $sql = "SELECT *  FROM `inout` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate')";
+	    $sql = "SELECT *  FROM `footfall` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate')";
 	  }else{
-	    $sql = "SELECT *  FROM `inout` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and `loc`='$slib'";
+	    $sql = "SELECT *  FROM `footfall` where (entry between '$ftime' and '$ttime') and (date between '$fdate' and '$tdate') and `loc`='$slib'";
 	  }
 	  $result = mysqli_query($conn, $sql) or die("Invalid query: " . mysqli_error($conn));
 	}
@@ -78,9 +78,9 @@
 
 	  if($flag == "Short"){
 	  	if($slib == "Master"){
-        $sql = "SELECT date, SUBTIME(`exit`,`entry`)  FROM `inout` WHERE `cardnumber`='$usn' AND `date` BETWEEN '$fdate' AND '$tdate'";
+        $sql = "SELECT date, SUBTIME(`exit`,`entry`)  FROM `footfall` WHERE `cardnumber`='$usn' AND `date` BETWEEN '$fdate' AND '$tdate'";
       }else{
-        $sql = "SELECT date, SUBTIME(`exit`,`entry`)  FROM `inout` WHERE `cardnumber`='$usn' AND (`date` BETWEEN '$fdate' AND '$tdate') AND `loc`='$slib'";
+        $sql = "SELECT date, SUBTIME(`exit`,`entry`)  FROM `footfall` WHERE `cardnumber`='$usn' AND (`date` BETWEEN '$fdate' AND '$tdate') AND `loc`='$slib'";
       }
       $result = mysqli_query($conn, $sql) or die("Invalid query: " . mysqli_error($conn));
       while ($row = mysqli_fetch_array($result)) {
@@ -94,9 +94,9 @@
 
 	  if($flag == "Detail"){
 	  	if($slib=="Master"){
-      	$sql = "SELECT date, SUBTIME(`exit`,`entry`), `exit`, `entry`, DAYNAME(`DATE`), `loc`  FROM `inout` WHERE `cardnumber`='$usn' AND `date` between '$fdate' and '$tdate'";
+      	$sql = "SELECT date, SUBTIME(`exit`,`entry`), `exit`, `entry`, DAYNAME(`DATE`), `loc`  FROM `footfall` WHERE `cardnumber`='$usn' AND `date` between '$fdate' and '$tdate'";
       }else{
-      	$sql = "SELECT date, SUBTIME(`exit`,`entry`), `exit`, `entry`, DAYNAME(`DATE`), `loc`  FROM `inout` WHERE `cardnumber`='$usn' AND (`date` between '$fdate' and '$tdate') and `loc`='$slib'";
+      	$sql = "SELECT date, SUBTIME(`exit`,`entry`), `exit`, `entry`, DAYNAME(`DATE`), `loc`  FROM `footfall` WHERE `cardnumber`='$usn' AND (`date` between '$fdate' and '$tdate') and `loc`='$slib'";
       }
       $result = mysqli_query($conn, $sql) or die("Invalid query: " . mysqli_error($conn));
 	  } 
@@ -145,7 +145,7 @@
 			        </thead>
 			        <tbody>
 			        	<?php
-			        		echo "<script type='text/javascript'>var printMsg = '".$_SESSION['lib']." Datewise Inout System Report From ".$fdate." To ".$tdate."';</script>";
+			        		echo "<script type='text/javascript'>var printMsg = '".$_SESSION['lib']." Datewise footfall System Report From ".$fdate." To ".$tdate."';</script>";
 	                while ($row = mysqli_fetch_array($result)) {
 	              ?>
 	              	<tr>
@@ -264,7 +264,7 @@
 				        </thead>
 				        <tbody>
 				        	<?php
-				        		echo "<script type='text/javascript'>var printMsg = '".$_SESSION['lib']." Detailed Inout System Report for ".$usn." From ".$fdate." To ".$tdate."';</script>";
+				        		echo "<script type='text/javascript'>var printMsg = '".$_SESSION['lib']." Detailed footfall System Report for ".$usn." From ".$fdate." To ".$tdate."';</script>";
 		                while ($row = mysqli_fetch_array($result)) {
 		              ?>
 		              	<tr>
@@ -319,20 +319,20 @@
 				        </thead>
 				        <tbody>
 				        	<?php
-				        		echo "<script type='text/javascript'>var printMsg = '".$_SESSION['lib']." Statistical Inout System Report From ".$fdate." To ".$tdate."';</script>";
+				        		echo "<script type='text/javascript'>var printMsg = '".$_SESSION['lib']." Statistical footfall System Report From ".$fdate." To ".$tdate."';</script>";
 
 				        		if($slib=="Master"){
                       $query = "SELECT * FROM `loc`";
                       $res = mysqli_query($conn, $query) or die("Invalid Query:".mysqli_error($conn));
                       while($row=mysqli_fetch_array($res)){
                         do{
-                          $sql = "SELECT count(sl), DAYNAME('$idate') FROM `inout` WHERE `date` = '$idate' AND `gender`='M' AND `loc`='$row[1]'";
+                          $sql = "SELECT count(sl), DAYNAME('$idate') FROM `footfall` WHERE `date` = '$idate' AND `gender`='M' AND `loc`='$row[1]'";
                           $result = mysqli_query($conn, $sql) or die("Invalid query1: " . mysqli_error($conn));
                           $male = mysqli_fetch_row($result);
-                          $sql = "SELECT count(sl)  FROM `inout` WHERE `date` = '$idate' AND `gender`='F' AND `loc`='$row[1]'";
+                          $sql = "SELECT count(sl)  FROM `footfall` WHERE `date` = '$idate' AND `gender`='F' AND `loc`='$row[1]'";
                           $result = mysqli_query($conn, $sql) or die("Invalid query2: " . mysqli_error($conn));
                           $female = mysqli_fetch_row($result);
-                          $sql = "SELECT count(sl)  FROM `inout` WHERE `date` = '$idate' AND `loc`='$row[1]'";
+                          $sql = "SELECT count(sl)  FROM `footfall` WHERE `date` = '$idate' AND `loc`='$row[1]'";
                           $result = mysqli_query($conn, $sql) or die("Invalid query3: " . mysqli_error($conn));
                           $visit = mysqli_fetch_row($result);
                           if($visit[0] != '0'){
@@ -346,13 +346,13 @@
 	                    }
 	                  }else{
 	                    do{
-	                      $sql = "SELECT count(sl), DAYNAME('$idate') FROM `inout` WHERE `date` = '$idate' AND `gender`='M' AND `loc`='$slib'";
+	                      $sql = "SELECT count(sl), DAYNAME('$idate') FROM `footfall` WHERE `date` = '$idate' AND `gender`='M' AND `loc`='$slib'";
 	                      $result = mysqli_query($conn, $sql) or die("Invalid query1: " . mysqli_error($conn));
 	                      $male = mysqli_fetch_row($result);
-	                      $sql = "SELECT count(sl)  FROM `inout` WHERE `date` = '$idate' AND `gender`='F' AND `loc`='$slib'";
+	                      $sql = "SELECT count(sl)  FROM `footfall` WHERE `date` = '$idate' AND `gender`='F' AND `loc`='$slib'";
 	                      $result = mysqli_query($conn, $sql) or die("Invalid query2: " . mysqli_error($conn));
 	                      $female = mysqli_fetch_row($result);
-	                      $sql = "SELECT count(sl)  FROM `inout` WHERE `date` = '$idate' AND `loc`='$slib'";
+	                      $sql = "SELECT count(sl)  FROM `footfall` WHERE `date` = '$idate' AND `loc`='$slib'";
 	                      $result = mysqli_query($conn, $sql) or die("Invalid query3: " . mysqli_error($conn));
 	                      $visit = mysqli_fetch_row($result);
 	                      if($visit[0] != '0'){
@@ -365,23 +365,23 @@
 	                  }
 
 	                  if($slib=="Master"){
-                      $sql = "SELECT count(sl)  FROM `inout` where (date between '$fdate' and '$tdate') and gender='M'";
+                      $sql = "SELECT count(sl)  FROM `footfall` where (date between '$fdate' and '$tdate') and gender='M'";
                     }else{
-                      $sql = "SELECT count(sl)  FROM `inout` where (date between '$fdate' and '$tdate') and gender='M' and `loc`='$slib'";
+                      $sql = "SELECT count(sl)  FROM `footfall` where (date between '$fdate' and '$tdate') and gender='M' and `loc`='$slib'";
                     }
                     $result = mysqli_query($conn, $sql) or die("Invalid query: " . mysqli_error($conn));
                     $male = mysqli_fetch_row($result);
                     if($slib=="Master"){
-                      $sql = "SELECT count(sl)  FROM `inout` where (date between '$fdate' and '$tdate') and gender='F'";
+                      $sql = "SELECT count(sl)  FROM `footfall` where (date between '$fdate' and '$tdate') and gender='F'";
                     }else{
-                      $sql = "SELECT count(sl)  FROM `inout` where (date between '$fdate' and '$tdate') and gender='F' and `loc`='$slib'";
+                      $sql = "SELECT count(sl)  FROM `footfall` where (date between '$fdate' and '$tdate') and gender='F' and `loc`='$slib'";
                     }
                     $result = mysqli_query($conn, $sql) or die("Invalid query: " . mysqli_error($conn));
                     $female = mysqli_fetch_row($result);
                     if($slib=="Master"){
-                      $sql = "SELECT count(sl)  FROM `inout` where (date between '$fdate' and '$tdate')";
+                      $sql = "SELECT count(sl)  FROM `footfall` where (date between '$fdate' and '$tdate')";
                     }else{
-                      $sql = "SELECT count(sl)  FROM `inout` where (date between '$fdate' and '$tdate') and `loc`='$slib'";
+                      $sql = "SELECT count(sl)  FROM `footfall` where (date between '$fdate' and '$tdate') and `loc`='$slib'";
                     }
                     $result = mysqli_query($conn, $sql) or die("Invalid query: " . mysqli_error($conn));
                     $visit = mysqli_fetch_row($result);
