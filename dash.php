@@ -140,7 +140,7 @@
 	    </div>
 	    <div class="col-md-6 text-center" style="margin-top: 24px;">
 	    	<div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-          <h2 style="flex-grow: 1; text-align: center;">In Out Management System</h2>
+          <h2 style="flex-grow: 1; text-align: center;">Footfall Tracking System</h2>
           <a class="nav-link" href="functions/signout.php" style="display: flex; align-items: center; text-decoration: none;">
             <i class="material-icons">power_settings_new</i>
             <p class="d-lg-none d-md-block" style="margin: 0; padding-left: 5px;">Logout</p>
@@ -280,12 +280,12 @@
 <script type="text/javascript">
 	$('span').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
 	  	setTimeout(function(){
-			window.location.replace("/dash.php");
+			window.location.replace("/footfall/dash.php");
 		}, 5200);
 	});
 	document.getElementById("usn").focus();
 	setTimeout(function(){
-		// window.location.replace("/inout/dash.php");
+		// window.location.replace("/footfall/dash.php");
 	}, 9800);
 </script>
 <!-- MAIN CONTENT ENDS -->

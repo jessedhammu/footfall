@@ -39,7 +39,7 @@ CREATE TABLE `inout` (
   `cc` varchar(100) NOT NULL DEFAULT '',
   `branch` varchar(100) NOT NULL DEFAULT '',
   `sort1` varchar(30) NOT NULL DEFAULT '',
-  `sort2` varchar(30) NOT NULL DEFAULT '',
+  `sort2` varchar(60) NOT NULL DEFAULT '',
   `email` varchar(120) NOT NULL DEFAULT '',
   `mob` varchar(20) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
